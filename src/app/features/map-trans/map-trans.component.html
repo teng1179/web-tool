@@ -1,0 +1,61 @@
+<div class="row ">
+  <div class="col col-xl-12 col-lg-12">
+
+
+    <div class="form-group">
+      <label for="addressTextarea">請輸入地址:</label>
+      <textarea class="form-control" id="addressTextarea" rows="3" [(ngModel)]="inputText"></textarea>
+    </div>
+
+  </div>
+</div>
+<div class="row  justify-content-between">
+  <div class="col col-xl-6 col-lg-6">
+    <div class="form-inline">
+      <label for="delayTime">查詢延遲時間(毫秒):</label>
+      <input type="number" min="200" class="form-control mb-2 mr-sm-2 mb-sm-0" id="delayTime" [(ngModel)]="delayTime">
+      <button type="button" class="btn btn-md btn-info" (click)="getAddressesLatLng()">查詢</button>
+      <button type="button" [appDownloadTableToCsv]="resultTableElement" class="btn btn-md btn-info" [disabled]="resultList.length==0 || processStatus !='執行完畢'">匯出查詢結果</button>
+      <button type="button" class="btn btn-md btn-warning" (click)="clear()" [disabled]="resultList.length==0">全部清空</button>
+    </div>
+
+
+  </div>
+  <div class="col col-xl-6 col-lg-6" style="text-align :right">
+    總筆數:{{cnt}} 查詢成功筆數:{{successCnt}} 查無資料筆數:{{notFoundCnt}} 處理狀態:{{processStatus}}
+  </div>
+</div>
+<div class="row">
+  <div class="col-12">
+    <p><ngb-progressbar [type]="processStatus == '執行完畢' ? 'success':'info'" [value]="cnt ==0 ? 0 : cnt/resultList.length*100 " [striped]="true" [animated]="true"><i>{{cnt ==0 ? 0 : cnt/resultList.length*100 | number : '1.0-1'}}%</i></ngb-progressbar></p>
+    <!-- <div class="progress">
+      <div class="progress-bar progress-bar-striped bg-info" role="progressbar" [style.width]="(cnt ==0 ? 0 : cnt/resultList.length*100 )+'%'" [aria-valuenow]="(cnt ==0 ? 0 : cnt/resultList.length*100 )+'%'" aria-valuemin="0"
+        aria-valuemax="100"></div>{{cnt ==0 ? 0 : cnt/resultList.length*100 | number : '1.0-1'}}%
+    </div> -->
+  </div>
+
+</div>
+
+<div class="row">
+  <div class="col col-xl-12 col-lg-12">
+    <table class="table table-bordered table-hover" #resultTable>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>地址</th>
+          <th>緯度</th>
+          <th>經度</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of resultList ; index as i;">
+          <td>{{i+1}}</td>
+          <td>{{item.searchAddress}}</td>
+          <td>{{item.lat}}</td>
+          <td>{{item.lng}}</td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+</div>

@@ -1,0 +1,49 @@
+<div class="container">
+  <div class="jumbotron">
+    <h1><i class="fa fa-exclamation-triangle fa-lg" aria-hidden="true"></i>施工中．．．</h1>
+
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col col-9">
+
+      <ngb-carousel>
+        <ng-template ngbSlide *ngFor="let slide of [1,2,3,4,5,6,7,8,9] ">
+          <img [src]="'https://lorempixel.com/900/500?r='+slide" alt="Random first slide">
+          <div class="carousel-caption">
+            <h3> slide {{slide}}</h3>
+            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+          </div>
+        </ng-template>
+      </ngb-carousel>
+    </div>
+    <div class="col col-3">
+      <div class="card">
+        <div class="card-block">
+          This is some text within a card block.
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-block">
+          This is some text within a card block.
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-block">
+          This is some text within a card block.
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-block">
+          This is some text within a card block.
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-block">
+          This is some text within a card block.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
